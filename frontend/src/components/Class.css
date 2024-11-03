@@ -1,0 +1,63 @@
+/* Estilos para o container da classe */
+.class-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .class-container h1 {
+    font-size: 24px;
+    color: #343a40;
+    margin-bottom: 10px;
+  }
+  
+  .class-container h2 {
+    font-size: 20px;
+    color: #495057;
+    margin-bottom: 15px;
+  }
+  
+  .class-container h3 {
+    font-size: 18px;
+    color: #007bff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .class-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .class-container li {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .class-container li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Estilos para o container das notas */
+  .scores-container {
+    display: flex; /* Usando flexbox para alinhar os itens */
+    gap: 10px; /* Espaço entre as notas */
+    margin-top: 5px; /* Margem superior para separar do nome do aluno */
+  }
+  
+  /* Estilos para cada nota */
+  .score-item {
+    background-color: #e9ecef; /* Cor de fundo das notas */
+    padding: 8px 10px; /* Espaçamento interno */
+    border-radius: 4px; /* Cantos arredondados */
+    flex: 1; /* Permite que as notas se espalhem igualmente */
+    text-align: center; /* Centraliza o texto */
+  }
+  
