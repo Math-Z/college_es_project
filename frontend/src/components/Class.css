@@ -61,3 +61,17 @@
     text-align: center; /* Centraliza o texto */
   }
   
+  .edit-button {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    padding: 10px 15px; /* Espaçamento interno do botão */
+    cursor: pointer; /* Mostra que o botão é clicável */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s; /* Transição suave para a mudança de cor */
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+  }

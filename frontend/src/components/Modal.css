@@ -1,0 +1,70 @@
+.modal-scores-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+  }
+  
+  .modal-scores-content {
+    background-color: white; /* Fundo branco para o modal */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    width: 400px; /* Largura fixa do modal */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    position: relative;
+  }
+  
+  .modal-scores-title {
+    margin-top: 0; /* Remove margem superior do título */
+    font-size: 24px; /* Aumenta o tamanho da fonte do título */
+    text-align: center; /* Centraliza o texto do título */
+  }
+  
+  .modal-scores-label {
+    display: block; /* Faz cada label ocupar uma linha inteira */
+    margin: 10px 0; /* Espaçamento vertical entre labels */
+    font-weight: bold; /* Deixa o texto das labels em negrito */
+  }
+  
+  .modal-scores-input {
+    width: 95%; /* Faz o input ocupar toda a largura do container */
+    padding: 10px; /* Espaçamento interno no input */
+    margin-top: 5px; /* Espaçamento entre label e input */
+    border: 1px solid #ccc; /* Borda cinza clara */
+    border-radius: 4px; /* Bordas arredondadas no input */
+    font-size: 16px; /* Aumenta o tamanho da fonte no input */
+  }
+  
+  .modal-scores-input:focus {
+    border-color: #007bff; /* Altera a cor da borda ao focar */
+    outline: none; /* Remove a outline padrão do input */
+  }
+  
+  .modal-scores-error {
+    color: red; /* Cor da mensagem de erro */
+    margin-top: 10px; /* Espaçamento acima da mensagem de erro */
+    text-align: center; /* Centraliza a mensagem de erro */
+  }
+  
+  .modal-scores-button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão do botão */
+    border-radius: 4px; /* Bordas arredondadas no botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    margin-top: 10px; /* Espaçamento acima do botão */
+    cursor: pointer; /* Mostra que o botão é clicável */
+    width: 100%; /* Botões ocupam toda a largura */
+    font-size: 16px; /* Aumenta o tamanho da fonte no botão */
+  }
+  
+  .modal-scores-button:hover {
+    background-color: #0056b3; /* Altera a cor ao passar o mouse */
+  }
+  

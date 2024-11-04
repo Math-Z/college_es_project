@@ -1,15 +1,16 @@
-// src/components/Class.js
-
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { listStudents, listScores } from '../services/api';
+import { listStudents, listScores, updateScores } from '../services/api';
+import Modal from './Modal'; // Importe o modal
 import './Class.css'; // Importando o CSS
 
 function Class() {
   const location = useLocation();
-  const { classInfo, subject } = location.state || {}; 
-  const [filteredStudents, setFilteredStudents] = useState([]); 
+  const { classInfo, subject } = location.state || {};
+  const [filteredStudents, setFilteredStudents] = useState([]);
   const [filteredScores, setFilteredScores] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState(null);
 
   useEffect(() => {
     const fetchStudentsAndScores = async () => {
@@ -49,6 +50,24 @@ function Class() {
     return score ? score.subjectScore : [null, null, null, null];
   };
 
+  const handleEditScores = (student) => {
+    setSelectedStudent(student);
+    setIsModalOpen(true);
+  };
+
+  const handleSaveScores = async (studentId, newScores) => {
+    try {
+      await updateScores(studentId, { scores: { [subject]: newScores } });
+      setFilteredScores(prevScores => 
+        prevScores.map(score =>
+          score.studentId === studentId ? { ...score, subjectScore: newScores } : score
+        )
+      );
+    } catch (error) {
+      console.error('Erro ao atualizar as notas:', error);
+    }
+  };
+
   return (
     <div className="class-container">
       <h1>Detalhes da Turma: {classInfo.turma}</h1>
@@ -61,10 +80,13 @@ function Class() {
               {student.username}
               <div className="scores-container">
                 {getStudentScores(student._id).map((score, i) => (
-                  <span key={i} className="score-item">
+                  <label key={i} className="score-item">
                     {score !== null ? score : 'Sem nota'}
-                  </span>
+                  </label>
                 ))}
+                <button className="edit-button" onClick={() => handleEditScores(student)}>
+                  Editar
+                </button>
               </div>
             </li>
           ))}
@@ -72,6 +94,14 @@ function Class() {
       ) : (
         <p>Não há alunos cadastrados para esta turma.</p>
       )}
+
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        student={selectedStudent} 
+        initialScores={selectedStudent ? getStudentScores(selectedStudent._id) : []}
+        onSave={handleSaveScores}
+      />
     </div>
   );
 }

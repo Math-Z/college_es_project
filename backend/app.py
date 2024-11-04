@@ -125,7 +125,7 @@ def class_exists(name):
 def subject_exists(name):
     return subjects_collection.find_one({"nome": name}) is not None
 
-# Rota de registro
+# Rota de BUILD
 @app.route('/')
 def home():
     return "API do Flask está funcionando!"
@@ -258,6 +258,35 @@ def list_students():
         # Remova a senha do retorno se estiver presente
         student.pop('password', None)  # Evita que a senha seja exposta
     return jsonify(students), 200
+
+#Alterar scores nessa porra:
+
+@app.route('/api/update_scores/<student_id>', methods=['PUT'])
+def update_single_subject_score(student_id):
+    """Atualiza os scores de uma matéria específica para um estudante."""
+    try:
+        data = request.get_json()
+        new_scores = data.get("scores")
+
+        if not new_scores:
+            return jsonify({"error": "Campo 'scores' é necessário para atualização"}), 400
+
+        # Atualiza apenas o campo de matéria específica em `scores`
+        updates = {f"scores.{subject}": scores for subject, scores in new_scores.items()}
+
+        result = scores_collection.update_one(
+            {"student": ObjectId(student_id)},
+            {"$set": updates}
+        )
+
+        if result.matched_count == 0:
+            return jsonify({"error": "Estudante não encontrado"}), 404
+
+        return jsonify({"message": "Score da matéria atualizado com sucesso!"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
 if __name__ == '__main__':
     initialize_database()

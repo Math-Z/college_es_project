@@ -15,4 +15,6 @@ export const listSubjects = () => api.get('/api/subjects');
 export const listScores = () => api.get('/api/scores');
 export const listStudents = () => api.get('/api/students');
 
+export const updateScores = (studentId, data) => api.put(`/api/update_scores/${studentId}`, data);
+
 export default api;
